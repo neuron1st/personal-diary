@@ -6,6 +6,6 @@ namespace PersonalDiary.DataAccess.Entities;
 public class AdminEntity : BaseEntity
 {
     public string Login { get; set; }
-    public string PasswordHush { get; set; }
+    public string PasswordHash { get; set; }
     public string Email { get; set; }
 }
