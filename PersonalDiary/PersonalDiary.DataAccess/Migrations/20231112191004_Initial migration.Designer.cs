@@ -12,7 +12,7 @@ using PersonalDiary.DataAccess;
 namespace PersonalDiary.DataAccess.Migrations
 {
     [DbContext(typeof(PersonalDiaryDbContext))]
-    [Migration("20231112111857_Initial migration")]
+    [Migration("20231112191004_Initial migration")]
     partial class Initialmigration
     {
         /// <inheritdoc />
