@@ -2,8 +2,8 @@ using PersonalDiary.WebAPI.Settings;
 using PersonalDiary.WebAPI.IoC;
 
 var configuration = new ConfigurationBuilder()
-.AddJsonFile("appsettings.json", optional: false)
-.Build();
+    .AddJsonFile("appsettings.json", optional: false)
+    .Build();
 
 var settings = PersonalDiarySettingsReader.Read(configuration);
 
@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+DbContextConfigurator.ConfigureService(builder.Services, settings);
 SerilogConfigurator.ConfigureService(builder);
 SwaggerConfigurator.ConfigureServices(builder.Services);
 
@@ -18,6 +19,7 @@ var app = builder.Build();
 
 SerilogConfigurator.ConfigureApplication(app);
 SwaggerConfigurator.ConfigureApplication(app);
+DbContextConfigurator.ConfigureApplication(app);
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

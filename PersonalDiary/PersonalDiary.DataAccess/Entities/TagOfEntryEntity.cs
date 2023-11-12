@@ -3,7 +3,7 @@
 namespace PersonalDiary.DataAccess.Entities;
 
 [Table("tags_of_entry")]
-public class TagOfEntryEntity
+public class TagOfEntryEntity : BaseEntity
 {
     public int TagId { get; set; }
     public TagEntity Tag { get; set; }

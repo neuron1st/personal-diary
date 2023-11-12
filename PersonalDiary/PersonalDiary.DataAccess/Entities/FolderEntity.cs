@@ -7,5 +7,10 @@ public class FolderEntity : BaseEntity
 {
     public string Name { get; set; }
 
-    public virtual ICollection<FolderOfEntryEntity> Folders { get; set; }
+    public int ParentFolderId { get; set; }
+    public FolderEntity ParentFolder { get; set; }
+
+    public virtual ICollection<FolderEntity> Folders { get; set; }
+
+    public virtual ICollection<FolderOfEntryEntity> FoldersOfEntry { get; set; }
 }

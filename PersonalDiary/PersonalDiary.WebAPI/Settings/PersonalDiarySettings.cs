@@ -2,6 +2,6 @@
 {
     public class PersonalDiarySettings
     {
-        //здесь будут приложения, например, строка подключения к бд
+        public string PersonalDiaryDbContextConnectionString { get; set; }
     }
 }

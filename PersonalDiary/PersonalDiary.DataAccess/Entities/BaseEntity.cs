@@ -9,7 +9,5 @@ public class BaseEntity
 
     public Guid ExternalId { get; set; }
     public DateTime ModificationTime { get; set; }
-    public DateTime CreationTIme { get; set; }
-
+    public DateTime CreationTime { get; set; }
 }
-
