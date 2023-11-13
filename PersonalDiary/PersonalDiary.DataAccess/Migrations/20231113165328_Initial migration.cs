@@ -111,56 +111,48 @@ namespace PersonalDiary.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "folders_of_entry",
+                name: "folders_of_entries",
                 columns: table => new
                 {
-                    FolderId = table.Column<int>(type: "int", nullable: false),
-                    DiaryEntryId = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    ExternalId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModificationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DiaryEntriesId = table.Column<int>(type: "int", nullable: false),
+                    FoldersId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_folders_of_entry", x => new { x.FolderId, x.DiaryEntryId });
+                    table.PrimaryKey("PK_folders_of_entries", x => new { x.DiaryEntriesId, x.FoldersId });
                     table.ForeignKey(
-                        name: "FK_folders_of_entry_diary_entries_DiaryEntryId",
-                        column: x => x.DiaryEntryId,
+                        name: "FK_folders_of_entries_diary_entries_DiaryEntriesId",
+                        column: x => x.DiaryEntriesId,
                         principalTable: "diary_entries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_folders_of_entry_folders_FolderId",
-                        column: x => x.FolderId,
+                        name: "FK_folders_of_entries_folders_FoldersId",
+                        column: x => x.FoldersId,
                         principalTable: "folders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "tags_of_entry",
+                name: "tags_of_entries",
                 columns: table => new
                 {
-                    TagId = table.Column<int>(type: "int", nullable: false),
-                    DiaryEntryId = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    ExternalId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModificationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DiaryEntriesId = table.Column<int>(type: "int", nullable: false),
+                    TagsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tags_of_entry", x => new { x.TagId, x.DiaryEntryId });
+                    table.PrimaryKey("PK_tags_of_entries", x => new { x.DiaryEntriesId, x.TagsId });
                     table.ForeignKey(
-                        name: "FK_tags_of_entry_diary_entries_DiaryEntryId",
-                        column: x => x.DiaryEntryId,
+                        name: "FK_tags_of_entries_diary_entries_DiaryEntriesId",
+                        column: x => x.DiaryEntriesId,
                         principalTable: "diary_entries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_tags_of_entry_tags_TagId",
-                        column: x => x.TagId,
+                        name: "FK_tags_of_entries_tags_TagsId",
+                        column: x => x.TagsId,
                         principalTable: "tags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -195,9 +187,9 @@ namespace PersonalDiary.DataAccess.Migrations
                 column: "ParentFolderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_folders_of_entry_DiaryEntryId",
-                table: "folders_of_entry",
-                column: "DiaryEntryId");
+                name: "IX_folders_of_entries_FoldersId",
+                table: "folders_of_entries",
+                column: "FoldersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tags_ExternalId",
@@ -206,9 +198,9 @@ namespace PersonalDiary.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_tags_of_entry_DiaryEntryId",
-                table: "tags_of_entry",
-                column: "DiaryEntryId");
+                name: "IX_tags_of_entries_TagsId",
+                table: "tags_of_entries",
+                column: "TagsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_users_ExternalId",
@@ -224,10 +216,10 @@ namespace PersonalDiary.DataAccess.Migrations
                 name: "admins");
 
             migrationBuilder.DropTable(
-                name: "folders_of_entry");
+                name: "folders_of_entries");
 
             migrationBuilder.DropTable(
-                name: "tags_of_entry");
+                name: "tags_of_entries");
 
             migrationBuilder.DropTable(
                 name: "folders");

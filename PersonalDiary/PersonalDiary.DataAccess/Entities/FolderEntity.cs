@@ -12,5 +12,5 @@ public class FolderEntity : BaseEntity
 
     public virtual ICollection<FolderEntity> Folders { get; set; }
 
-    public virtual ICollection<FolderOfEntryEntity> FoldersOfEntry { get; set; }
+    public virtual ICollection<DiaryEntryEntity> DiaryEntries { get; set; }
 }

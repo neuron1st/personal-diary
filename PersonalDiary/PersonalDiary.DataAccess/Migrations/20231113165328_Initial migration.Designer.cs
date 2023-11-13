@@ -12,7 +12,7 @@ using PersonalDiary.DataAccess;
 namespace PersonalDiary.DataAccess.Migrations
 {
     [DbContext(typeof(PersonalDiaryDbContext))]
-    [Migration("20231112191004_Initial migration")]
+    [Migration("20231113165328_Initial migration")]
     partial class Initialmigration
     {
         /// <inheritdoc />
@@ -24,6 +24,36 @@ namespace PersonalDiary.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("DiaryEntryEntityFolderEntity", b =>
+                {
+                    b.Property<int>("DiaryEntriesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FoldersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DiaryEntriesId", "FoldersId");
+
+                    b.HasIndex("FoldersId");
+
+                    b.ToTable("folders_of_entries", (string)null);
+                });
+
+            modelBuilder.Entity("DiaryEntryEntityTagEntity", b =>
+                {
+                    b.Property<int>("DiaryEntriesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DiaryEntriesId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("tags_of_entries", (string)null);
+                });
 
             modelBuilder.Entity("PersonalDiary.DataAccess.Entities.AdminEntity", b =>
                 {
@@ -139,33 +169,6 @@ namespace PersonalDiary.DataAccess.Migrations
                     b.ToTable("folders");
                 });
 
-            modelBuilder.Entity("PersonalDiary.DataAccess.Entities.FolderOfEntryEntity", b =>
-                {
-                    b.Property<int>("FolderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DiaryEntryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("ExternalId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("FolderId", "DiaryEntryId");
-
-                    b.HasIndex("DiaryEntryId");
-
-                    b.ToTable("folders_of_entry");
-                });
-
             modelBuilder.Entity("PersonalDiary.DataAccess.Entities.TagEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -193,33 +196,6 @@ namespace PersonalDiary.DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("tags");
-                });
-
-            modelBuilder.Entity("PersonalDiary.DataAccess.Entities.TagOfEntryEntity", b =>
-                {
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DiaryEntryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("ExternalId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("TagId", "DiaryEntryId");
-
-                    b.HasIndex("DiaryEntryId");
-
-                    b.ToTable("tags_of_entry");
                 });
 
             modelBuilder.Entity("PersonalDiary.DataAccess.Entities.UserEntity", b =>
@@ -259,6 +235,36 @@ namespace PersonalDiary.DataAccess.Migrations
                     b.ToTable("users");
                 });
 
+            modelBuilder.Entity("DiaryEntryEntityFolderEntity", b =>
+                {
+                    b.HasOne("PersonalDiary.DataAccess.Entities.DiaryEntryEntity", null)
+                        .WithMany()
+                        .HasForeignKey("DiaryEntriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PersonalDiary.DataAccess.Entities.FolderEntity", null)
+                        .WithMany()
+                        .HasForeignKey("FoldersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DiaryEntryEntityTagEntity", b =>
+                {
+                    b.HasOne("PersonalDiary.DataAccess.Entities.DiaryEntryEntity", null)
+                        .WithMany()
+                        .HasForeignKey("DiaryEntriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PersonalDiary.DataAccess.Entities.TagEntity", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PersonalDiary.DataAccess.Entities.DiaryEntryEntity", b =>
                 {
                     b.HasOne("PersonalDiary.DataAccess.Entities.UserEntity", "User")
@@ -281,61 +287,9 @@ namespace PersonalDiary.DataAccess.Migrations
                     b.Navigation("ParentFolder");
                 });
 
-            modelBuilder.Entity("PersonalDiary.DataAccess.Entities.FolderOfEntryEntity", b =>
-                {
-                    b.HasOne("PersonalDiary.DataAccess.Entities.DiaryEntryEntity", "DiaryEntry")
-                        .WithMany("Folders")
-                        .HasForeignKey("DiaryEntryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PersonalDiary.DataAccess.Entities.FolderEntity", "Folder")
-                        .WithMany("FoldersOfEntry")
-                        .HasForeignKey("FolderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DiaryEntry");
-
-                    b.Navigation("Folder");
-                });
-
-            modelBuilder.Entity("PersonalDiary.DataAccess.Entities.TagOfEntryEntity", b =>
-                {
-                    b.HasOne("PersonalDiary.DataAccess.Entities.DiaryEntryEntity", "DiaryEntry")
-                        .WithMany("Tags")
-                        .HasForeignKey("DiaryEntryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PersonalDiary.DataAccess.Entities.TagEntity", "Tag")
-                        .WithMany("Tags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DiaryEntry");
-
-                    b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("PersonalDiary.DataAccess.Entities.DiaryEntryEntity", b =>
-                {
-                    b.Navigation("Folders");
-
-                    b.Navigation("Tags");
-                });
-
             modelBuilder.Entity("PersonalDiary.DataAccess.Entities.FolderEntity", b =>
                 {
                     b.Navigation("Folders");
-
-                    b.Navigation("FoldersOfEntry");
-                });
-
-            modelBuilder.Entity("PersonalDiary.DataAccess.Entities.TagEntity", b =>
-                {
-                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("PersonalDiary.DataAccess.Entities.UserEntity", b =>

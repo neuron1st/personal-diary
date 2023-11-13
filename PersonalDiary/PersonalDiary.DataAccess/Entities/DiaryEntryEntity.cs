@@ -12,7 +12,7 @@ public class DiaryEntryEntity : BaseEntity
     public int UserId { get; set; }
     public UserEntity User { get; set; }
 
-    public virtual ICollection<TagOfEntryEntity> Tags { get; set; }
+    public virtual ICollection<TagEntity> Tags { get; set; }
 
-    public virtual ICollection<FolderOfEntryEntity> Folders { get; set; }
+    public virtual ICollection<FolderEntity> Folders { get; set; }
 }

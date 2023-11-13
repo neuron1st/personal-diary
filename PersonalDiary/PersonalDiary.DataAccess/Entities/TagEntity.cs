@@ -7,5 +7,5 @@ public class TagEntity : BaseEntity
 {
     public string Name { get; set; }
 
-    public virtual ICollection<TagOfEntryEntity> Tags { get; set; }
+    public virtual ICollection<DiaryEntryEntity> DiaryEntries { get; set; }
 }
