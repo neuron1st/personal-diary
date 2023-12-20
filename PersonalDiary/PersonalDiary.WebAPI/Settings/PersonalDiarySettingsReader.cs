@@ -6,7 +6,11 @@
         {
             return new PersonalDiarySettings()
             {
-                PersonalDiaryDbContextConnectionString = configuration.GetValue<string>("PersonalDiaryDbContext")
+                ServiceUri = configuration.GetValue<Uri>("Uri"),
+                PersonalDiaryDbContextConnectionString = configuration.GetValue<string>("PersonalDiaryDbContext"),
+                IdentityServerUri = configuration.GetValue<string>("IdentityServerSettings:Uri"),
+                ClientId = configuration.GetValue<string>("IdentityServerSettings:ClientId"),
+                ClientSecret = configuration.GetValue<string>("IdentityServerSettings:ClientSecret"),
             };
         }
     }
