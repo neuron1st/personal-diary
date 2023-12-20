@@ -19,7 +19,7 @@ public class AdminsProviderTests
         mockRepository.Setup(r => r.GetById(It.IsAny<Guid>())).Returns(new AdminEntity
         {
             ExternalId = adminId,
-            Login = "test",
+            UserName = "test",
             Email = "test@example.com"
         });
 
@@ -27,7 +27,7 @@ public class AdminsProviderTests
         mockMapper.Setup(m => m.Map<AdminModel>(It.IsAny<AdminEntity>())).Returns(new AdminModel
         {
             Id = adminId,
-            Login = "test",
+            UserName = "test",
             Email = "test@example.com"
         });
 

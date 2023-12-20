@@ -21,7 +21,7 @@ public class DiaryEntryRepositoryTests : RepositoryTestsBaseClass
         using var context = DbContextFactory.CreateDbContext();
         var user = new UserEntity()
         {
-            Login = "User1",
+            UserName = "User1",
             PasswordHash = "pepega",
             Email = "user1@gmail.com",
             ExternalId = Guid.NewGuid()
@@ -66,7 +66,7 @@ public class DiaryEntryRepositoryTests : RepositoryTestsBaseClass
         using var context = DbContextFactory.CreateDbContext();
         var user = new UserEntity()
         {
-            Login = "User1",
+            UserName = "User1",
             PasswordHash = "pepega",
             Email = "user1@gmail.com",
             ExternalId = Guid.NewGuid()
@@ -112,7 +112,7 @@ public class DiaryEntryRepositoryTests : RepositoryTestsBaseClass
         using var context = DbContextFactory.CreateDbContext();
         var user = new UserEntity()
         {
-            Login = "User1",
+            UserName = "User1",
             PasswordHash = "pepega",
             Email = "user1@gmail.com",
             ExternalId = Guid.NewGuid()
@@ -150,7 +150,7 @@ public class DiaryEntryRepositoryTests : RepositoryTestsBaseClass
         using var context = DbContextFactory.CreateDbContext();
         var user = new UserEntity()
         {
-            Login = "User1",
+            UserName = "User1",
             PasswordHash = "pepega",
             Email = "user1@gmail.com",
             ExternalId = Guid.NewGuid()
@@ -189,7 +189,7 @@ public class DiaryEntryRepositoryTests : RepositoryTestsBaseClass
         using var context = DbContextFactory.CreateDbContext();
         var user = new UserEntity()
         {
-            Login = "User1",
+            UserName = "User1",
             PasswordHash = "pepega",
             Email = "user1@gmail.com",
             ExternalId = Guid.NewGuid()

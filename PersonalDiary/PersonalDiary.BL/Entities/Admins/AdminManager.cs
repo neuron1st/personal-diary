@@ -40,7 +40,7 @@ public class AdminsManager : IAdminsManager
         {
             throw new ArgumentException("not found");
         }
-        entity.Login = model.Login;
+        entity.UserName = model.UserName;
         entity.Email = model.Email;
         _repository.Save(entity);
         return _mapper.Map<AdminModel>(entity);

@@ -1,13 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PersonalDiary.DataAccess.Entities;
 
 [Table("users")]
-public class UserEntity : BaseEntity
+public class UserEntity : IdentityUser<int>, IBaseEntity
 {
-    public string Login { get; set; }
-    public string PasswordHash { get; set; }
-    public string Email { get; set; }
+    public Guid ExternalId { get; set; }
+    public DateTime ModificationTime { get; set; }
+    public DateTime CreationTime { get; set; }
+    public DateTime Birthday { get; set; }
 
     public virtual ICollection<DiaryEntryEntity> DiaryEntries { get; set; }
+}
+
+public class UserRoleEntity : IdentityRole<int>
+{
 }

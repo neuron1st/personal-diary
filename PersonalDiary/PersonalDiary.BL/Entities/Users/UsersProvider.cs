@@ -28,10 +28,10 @@ public class UsersProvider : IUsersProvider
 
     public IEnumerable<UserModel> GetUsers(UserModelFilter? filter = null)
     {
-        var login = filter?.Login;
+        var UserName = filter?.UserName;
         var email = filter?.Email;
         var admins = _repository.GetAll(x =>
-            (login == null || x.Login == login) && (email == null || x.Email == email));
+            (UserName == null || x.UserName == UserName) && (email == null || x.Email == email));
         return _mapper.Map<IEnumerable<UserModel>>(admins);
     }
 }

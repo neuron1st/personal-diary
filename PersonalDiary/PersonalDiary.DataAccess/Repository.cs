@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace PersonalDiary.DataAccess;
 
-public class Repository<T> : IRepository<T> where T : BaseEntity
+public class Repository<T> : IRepository<T> where T : class, IBaseEntity
 {
     public Repository(IDbContextFactory<PersonalDiaryDbContext> contextFactory)
     {

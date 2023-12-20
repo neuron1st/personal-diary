@@ -49,7 +49,6 @@ public class PersonalDiaryDbContext : DbContext
             .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<TagEntity>().HasKey(x => x.Id);
-        modelBuilder.Entity<TagEntity>().HasKey(x => x.Id);
         modelBuilder.Entity<TagEntity>().HasIndex(x => x.ExternalId).IsUnique();
     }
 }

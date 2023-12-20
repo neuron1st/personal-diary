@@ -6,7 +6,7 @@ public class CreateAdminRequest : IValidatableObject
 {
     [Required]
     [MinLength(2)]
-    public string Login { get; set; }
+    public string UserName { get; set; }
     [Required]
     [EmailAddress]
     public string Email { get; set; }
