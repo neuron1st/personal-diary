@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using PersonalDiary.BL.Entities.Folders.Entities;
-using PersonalDiary.BL.Exceptions;
 using PersonalDiary.DataAccess;
 using PersonalDiary.DataAccess.Entities;
 
@@ -38,7 +37,7 @@ public class FoldersProvider : IFoldersProvider
         var entity = _repository.GetById(id);
         if (entity == null)
         {
-            throw new NotFoundException();
+            throw new ArgumentException("not found");
         }
         return _mapper.Map<FolderModel>(entity);
     }

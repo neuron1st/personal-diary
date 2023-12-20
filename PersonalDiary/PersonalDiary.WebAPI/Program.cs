@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 DbContextConfigurator.ConfigureService(builder.Services, settings);
 SerilogConfigurator.ConfigureService(builder);
 SwaggerConfigurator.ConfigureServices(builder.Services);
+MapperConfigurator.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 

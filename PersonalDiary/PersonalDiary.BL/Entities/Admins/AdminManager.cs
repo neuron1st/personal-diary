@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using PersonalDiary.BL.Entities.Admins.Entities;
-using PersonalDiary.BL.Exceptions;
 using PersonalDiary.DataAccess;
 using PersonalDiary.DataAccess.Entities;
 
@@ -29,7 +28,7 @@ public class AdminsManager : IAdminsManager
         var entity = _repository.GetById(id);
         if (entity == null)
         {
-            throw new NotFoundException();
+            throw new ArgumentException("not found");
         }
         _repository.Delete(entity);
     }
@@ -39,7 +38,7 @@ public class AdminsManager : IAdminsManager
         var entity = _repository.GetById(id);
         if (entity == null)
         {
-            throw new NotFoundException();
+            throw new ArgumentException("not found");
         }
         entity.Login = model.Login;
         entity.Email = model.Email;

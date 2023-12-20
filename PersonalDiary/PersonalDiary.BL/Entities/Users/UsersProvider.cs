@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using PersonalDiary.BL.Entities.Users.Entities;
-using PersonalDiary.BL.Exceptions;
 using PersonalDiary.DataAccess;
 using PersonalDiary.DataAccess.Entities;
 
@@ -22,7 +21,7 @@ public class UsersProvider : IUsersProvider
         var admin = _repository.GetById(id);
         if (admin == null)
         {
-            throw new NotFoundException();
+            throw new ArgumentException("not found");
         }
         return _mapper.Map<UserModel>(admin);
     }

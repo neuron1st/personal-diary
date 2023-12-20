@@ -2,7 +2,7 @@
 
 namespace PersonalDiary.BL.Entities.Users;
 
-internal interface IUsersManager
+public interface IUsersManager
 {
     UserModel CreateUser(CreateUserModel model);
     void DeleteUser(Guid id);

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using PersonalDiary.BL.Entities.DiaryEntries.Entities;
-using PersonalDiary.BL.Exceptions;
 using PersonalDiary.DataAccess;
 using PersonalDiary.DataAccess.Entities;
 
@@ -57,7 +56,7 @@ public class DiaryEntriesManager : IDiaryEntriesManager
         var entity = _repository.GetById(id);
         if (entity == null)
         {
-            throw new NotFoundException();
+            throw new ArgumentException("not found");
         }
         _repository.Delete(entity);
     }
@@ -67,7 +66,7 @@ public class DiaryEntriesManager : IDiaryEntriesManager
         var entity = _repository.GetById(id);
         if (entity == null)
         {
-            throw new NotFoundException();
+            throw new ArgumentException("not found");
         }
 
         entity.Heading = model.Heading;
