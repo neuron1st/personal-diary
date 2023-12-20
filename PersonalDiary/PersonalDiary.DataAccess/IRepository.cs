@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace PersonalDiary.DataAccess;
 
-public interface IRepository<T> where T : BaseEntity
+public interface IRepository<T> where T : class, IBaseEntity
 {
     IEnumerable<T> GetAll();
     IEnumerable<T> GetAll(Expression<Func<T, bool>> filter);

@@ -18,14 +18,14 @@ public class UserRepositoryTests : RepositoryTestsBaseClass
         {
             new UserEntity()
             {
-                Login = "User1",
+                UserName = "User1",
                 PasswordHash = "pepega",
                 Email = "user1@gmail.com",
                 ExternalId = Guid.NewGuid()
             },
             new UserEntity()
             {
-                Login = "User2",
+                UserName = "User2",
                 PasswordHash = "pepega",
                 Email = "user2@gmail.com",
                 ExternalId = Guid.NewGuid()
@@ -51,14 +51,14 @@ public class UserRepositoryTests : RepositoryTestsBaseClass
         {
             new UserEntity()
             {
-                Login = "User1",
+                UserName = "User1",
                 PasswordHash = "pepega",
                 Email = "user1@gmail.com",
                 ExternalId = Guid.NewGuid()
             },
             new UserEntity()
             {
-                Login = "User2",
+                UserName = "User2",
                 PasswordHash = "zuzuga",
                 Email = "user2@gmail.com",
                 ExternalId = Guid.NewGuid()
@@ -69,10 +69,10 @@ public class UserRepositoryTests : RepositoryTestsBaseClass
 
         // execute
         var repository = new Repository<UserEntity>(DbContextFactory);
-        var actualUsers = repository.GetAll(x => x.Login == "User2");
+        var actualUsers = repository.GetAll(x => x.UserName == "User2");
 
         // assert
-        actualUsers.Should().BeEquivalentTo(users.Where(x => x.Login == "User2"));
+        actualUsers.Should().BeEquivalentTo(users.Where(x => x.UserName == "User2"));
     }
 
     [Test]
@@ -84,7 +84,7 @@ public class UserRepositoryTests : RepositoryTestsBaseClass
         // execute
         var user = new UserEntity()
         {
-            Login = "User1",
+            UserName = "User1",
             PasswordHash = "pepega",
             Email = "user1@gmail.com",
             ExternalId = Guid.NewGuid()
@@ -113,7 +113,7 @@ public class UserRepositoryTests : RepositoryTestsBaseClass
 
         var user = new UserEntity()
         {
-            Login = "User1",
+            UserName = "User1",
             PasswordHash = "pepega",
             Email = "user1@gmail.com",
             ExternalId = Guid.NewGuid()
@@ -122,7 +122,7 @@ public class UserRepositoryTests : RepositoryTestsBaseClass
         context.SaveChanges();
 
         // execute
-        user.Login = "user123";
+        user.UserName = "user123";
         user.PasswordHash = "pepe";
         user.Email = "user123@gmail.com";
         var repository = new Repository<UserEntity>(DbContextFactory);
@@ -141,7 +141,7 @@ public class UserRepositoryTests : RepositoryTestsBaseClass
 
         var user = new UserEntity()
         {
-            Login = "User1",
+            UserName = "User1",
             PasswordHash = "pepega",
             Email = "user1@gmail.com",
             ExternalId = Guid.NewGuid()
