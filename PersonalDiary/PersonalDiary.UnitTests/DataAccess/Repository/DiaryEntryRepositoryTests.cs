@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDiary.UnitTests.Repository;
+namespace PersonalDiary.UnitTests.DataAccess.Repository;
 
 [TestFixture]
 [Category("Integration")]
@@ -101,7 +101,7 @@ public class DiaryEntryRepositoryTests : RepositoryTestsBaseClass
         var actualEntries = repository.GetAll(x => x.IsPublic);
 
         // assert
-        actualEntries.Should().BeEquivalentTo(entries.Where(x => x.IsPublic), 
+        actualEntries.Should().BeEquivalentTo(entries.Where(x => x.IsPublic),
             options => options.Excluding(x => x.User));
     }
 

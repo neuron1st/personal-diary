@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDiary.UnitTests.Repository;
+namespace PersonalDiary.UnitTests.DataAccess.Repository;
 
 public class RepositoryTestsBaseClass
 {

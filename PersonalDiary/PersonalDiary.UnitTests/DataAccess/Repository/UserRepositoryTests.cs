@@ -3,7 +3,7 @@ using NUnit.Framework;
 using PersonalDiary.DataAccess;
 using PersonalDiary.DataAccess.Entities;
 
-namespace PersonalDiary.UnitTests.Repository;
+namespace PersonalDiary.UnitTests.DataAccess.Repository;
 
 [TestFixture]
 [Category("Integration")]
