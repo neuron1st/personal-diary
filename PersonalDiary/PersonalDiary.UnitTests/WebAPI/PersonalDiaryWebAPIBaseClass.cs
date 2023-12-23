@@ -43,15 +43,23 @@ public class PersonalDiaryWebAPIBaseClass
     [OneTimeSetUp]
     public void OneTimeSetup()
     {
-        //using var scope = GetService<IServiceScopeFactory>().CreateScope();
-        //var diaryEntryRepository = scope.ServiceProvider.GetRequiredService<IRepository<DiaryEntryEntity>>();
-        //var diaryEntry = diaryEntryRepository.Save(new DiaryEntryEntity()
-        //{
-        //    Heading = "test",
-        //    Text = "test",
-        //    IsPublic = true
-        //});;
-        //TestDiaryEntryId = diaryEntry.Id;
+        using var scope = GetService<IServiceScopeFactory>().CreateScope();
+        var userRepository = scope.ServiceProvider.GetRequiredService<IRepository<UserEntity>>();
+        var user = userRepository.Save(new UserEntity()
+        {
+            UserName = "test",
+            Email = "test@test",
+            PasswordHash = "test"
+        });
+        var diaryEntryRepository = scope.ServiceProvider.GetRequiredService<IRepository<DiaryEntryEntity>>();
+        var diaryEntry = diaryEntryRepository.Save(new DiaryEntryEntity()
+        {
+            Heading = "test",
+            Text = "test",
+            IsPublic = true,
+            UserId = user.Id
+        });
+        TestDiaryEntryId = diaryEntry.Id;
     }
 
     public T? GetService<T>()
